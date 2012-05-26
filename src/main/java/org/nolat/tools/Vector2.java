@@ -1,4 +1,4 @@
-package org.nolat;
+package org.nolat.tools;
 
 /**
  * A basic implementation of a Vector2 class. It is based off of the Vector2

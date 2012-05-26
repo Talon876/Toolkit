@@ -1,4 +1,4 @@
-package org.nolat;
+package org.nolat.tools;
 
 import java.awt.Color;
 import java.util.Random;
