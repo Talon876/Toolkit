@@ -9,7 +9,7 @@ import java.util.Random;
  * @author Talon
  * 
  */
-class Toolkit {
+final class Toolkit {
 
     private static Random random = new Random();
 
