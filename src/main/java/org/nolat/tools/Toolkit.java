@@ -9,7 +9,7 @@ import java.util.Random;
  * @author Talon
  * 
  */
-public class Toolkit {
+class Toolkit {
 
     private static Random random = new Random();
 
@@ -91,14 +91,29 @@ public class Toolkit {
     }
 
     /**
-     * Converts an angle to a Vector2
+     * Converts an angle to a Vector2 <br>
+     * NOTE: 0 degrees points up, 90 degrees points right, 180 degrees points
+     * down, 270 degrees points left.
      * 
      * @param angle
-     *            the angle to be converted.
+     *            the angle to be converted, in radians.
      * @return A Vector2 representing the angle.
      */
-    public static Vector2 convertAngleToVector2(float angle) {
+    public static Vector2 angleToVector2(float angle) {
         return new Vector2((float) Math.sin(angle), (float) Math.cos(angle));
+    }
+
+    /**
+     * Converts a Vector2 to an angle.<br>
+     * NOTE: 0 degrees points up, 90 degrees points right, 180 degrees points
+     * down, 270 degrees points left.
+     * 
+     * @param vector
+     *            the vector to be converted
+     * @return The angle represented by the vector2 in radians.
+     */
+    public static float vector2ToAngle(Vector2 vector) {
+        return (float) Math.atan2(vector.y, vector.x);
     }
 
     /**
@@ -107,7 +122,7 @@ public class Toolkit {
      * @return A vector2 representing the random angle
      */
     public static Vector2 randomAngleAsVector2() {
-        return convertAngleToVector2(randomAngle());
+        return angleToVector2(randomAngle());
     }
 
     /**
@@ -122,7 +137,7 @@ public class Toolkit {
      * @return The value after performing LERP
      */
     public static float lerp(float value1, float value2, float amount) {
-        return value1 + (value2 - value1) * amount;
+        return value1 + Math.abs(value2 - value1) * amount;
     }
 
     /**
@@ -144,4 +159,27 @@ public class Toolkit {
 
         return new Color(r, g, b, a);
     }
+
+    /**
+     * A wrapper around Math.toDegrees that uses floats.
+     * 
+     * @param radians
+     *            The angle in radians.
+     * @return The equivalent degree value
+     */
+    public static float toDegrees(float radians) {
+        return (float) Math.toDegrees(radians);
+    }
+
+    /**
+     * A wrapper around Math.toRadians that uses floats.
+     * 
+     * @param degrees
+     *            The angle in degrees.
+     * @return The equivalent radian value
+     */
+    public static float toRadians(float degrees) {
+        return (float) Math.toRadians(degrees);
+    }
+
 }

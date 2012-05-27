@@ -32,6 +32,8 @@ public class Vector2 {
     public float x = 0f;
     public float y = 0f;
 
+    private static final double EPSILON = .0005d;
+
     /**
      * Creates a Vector2. x and y are set to 0f by default.
      */
@@ -85,14 +87,6 @@ public class Vector2 {
     public void setTo(float x, float y) {
         this.x = x;
         this.y = y;
-    }
-
-    /**
-     * Returns a string representation of the vector in the form: [x,y]
-     */
-    @Override
-    public String toString() {
-        return new String("[" + x + "," + y + "]");
     }
 
     /**
@@ -238,5 +232,34 @@ public class Vector2 {
         y *= scalar;
 
         return new Vector2(this);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Vector2 otherVector = (Vector2) obj;
+        x = Math.round(x);
+        y = Math.round(y);
+        otherVector.x = Math.round(otherVector.x);
+        otherVector.y = Math.round(otherVector.y);
+
+        boolean xEquals = Math.abs(x) >= Math.abs(otherVector.x) * (1 - EPSILON)
+                && Math.abs(x) <= Math.abs(otherVector.x) * (1 + EPSILON);
+        boolean yEquals = Math.abs(y) >= Math.abs(otherVector.y) * (1 - EPSILON)
+                && Math.abs(y) <= Math.abs(otherVector.y) * (1 + EPSILON);
+        if (xEquals && yEquals) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Returns a string representation of the vector in the form: [x,y]
+     */
+    @Override
+    public String toString() {
+        x = Math.round(x);
+        y = Math.round(y);
+        return new String("[" + x + "," + y + "]");
     }
 }
