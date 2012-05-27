@@ -18,6 +18,9 @@ class Toolkit {
     public static final float PiOver4 = (float) (Math.PI / 4.0);
     public static final float TwoPi = (float) (Math.PI * 2.0);
 
+    private Toolkit() {
+    }
+
     /**
      * 
      * @return The Random instance this toolkit is using.

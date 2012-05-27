@@ -236,21 +236,28 @@ public class Vector2 {
 
     @Override
     public boolean equals(Object obj) {
-        Vector2 otherVector = (Vector2) obj;
-        x = Math.round(x);
-        y = Math.round(y);
-        otherVector.x = Math.round(otherVector.x);
-        otherVector.y = Math.round(otherVector.y);
+        boolean result = false;
+        if (obj instanceof Vector2) {
+            Vector2 otherVector = (Vector2) obj;
+            x = Math.round(x);
+            y = Math.round(y);
+            otherVector.x = Math.round(otherVector.x);
+            otherVector.y = Math.round(otherVector.y);
 
-        boolean xEquals = Math.abs(x) >= Math.abs(otherVector.x) * (1 - EPSILON)
-                && Math.abs(x) <= Math.abs(otherVector.x) * (1 + EPSILON);
-        boolean yEquals = Math.abs(y) >= Math.abs(otherVector.y) * (1 - EPSILON)
-                && Math.abs(y) <= Math.abs(otherVector.y) * (1 + EPSILON);
-        if (xEquals && yEquals) {
-            return true;
+            boolean xEquals = Math.abs(x) >= Math.abs(otherVector.x) * (1 - EPSILON)
+                    && Math.abs(x) <= Math.abs(otherVector.x) * (1 + EPSILON);
+            boolean yEquals = Math.abs(y) >= Math.abs(otherVector.y) * (1 - EPSILON)
+                    && Math.abs(y) <= Math.abs(otherVector.y) * (1 + EPSILON);
+            result = xEquals && yEquals;
         } else {
-            return false;
+            result = false;
         }
+        return result;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (42 * (42 + x) + y);
     }
 
     /**
