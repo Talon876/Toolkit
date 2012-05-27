@@ -3,6 +3,8 @@ package org.nolat.tools;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.awt.Color;
+
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
@@ -38,7 +40,7 @@ public class ToolkitTest {
         for (int i = -360; i <= 360; i++) {
             float radian = Toolkit.toRadians(i);
             float degrees = Toolkit.toDegrees(radian);
-            if (i % 10 == 0) {
+            if (i % 20 == 0) {
                 LOG.info("i: " + i + "; radians: " + radian + "; degrees: " + degrees);
             }
             assertEquals(i, degrees, EPSILON);
@@ -91,6 +93,27 @@ public class ToolkitTest {
         for (int i = 0; i < amounts.length; i++) {
             LOG.info("LERPing " + amounts[i] + " should get " + expectedResults[i]);
             assertEquals(expectedResults[i], Toolkit.lerp(min, max, amounts[i]), EPSILON);
+        }
+    }
+
+    @Test
+    public void testColorLerping() {
+        Color color1 = new Color(255, 0, 0);
+        Color color2 = new Color(0, 255, 0);
+        float amount = .5f;
+        Color expected = new Color(128, 128, 0);
+        Color actual = Toolkit.colorLerp(color1, color2, amount);
+        assertEquals(expected, actual);
+        // assertEquals(expected.getRed(), actual.getRed());
+        // assertEquals(expected.getGreen(), actual.getGreen());
+        // assertEquals(expected.getBlue(), actual.getBlue());
+        // assertEquals(expected.getAlpha(), actual.getAlpha());
+    }
+
+    @Test
+    public void testRandomColors() {
+        for (int i = 0; i < 10000; i++) {
+            Toolkit.randomColor(i % 2 == 0);
         }
     }
 }
