@@ -42,7 +42,7 @@ public class Toolkit {
      * @return A random float between the min and max.
      */
     public static float randomRange(float min, float max) {
-        return (float) random.nextDouble() * (max - min) + min;
+        return (float) (random.nextDouble() * (max - min) + min);
     }
 
     /**
@@ -55,7 +55,7 @@ public class Toolkit {
      * @return A random integer between the min and max.
      */
     public static int randomRange(int min, int max) {
-        return (int) random.nextDouble() * (max - min) + min;
+        return random.nextInt(max - min + 1) + min;
     }
 
     /**
@@ -67,10 +67,10 @@ public class Toolkit {
      * @return A random color.
      */
     public static Color randomColor(boolean alpha) {
-        byte r = (byte) randomRange(0, 255);
-        byte g = (byte) randomRange(0, 255);
-        byte b = (byte) randomRange(0, 255);
-        byte a = (byte) randomRange(0, 255);
+        int r = randomRange(0, 255);
+        int g = randomRange(0, 255);
+        int b = randomRange(0, 255);
+        int a = randomRange(0, 255);
         if (alpha) {
             return new Color(r, g, b, a);
         } else {

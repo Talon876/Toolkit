@@ -36,6 +36,20 @@ public class ToolkitTest {
     }
 
     @Test
+    public void testRandomEdgeCases() {
+        boolean[] hits = new boolean[10]; // 0 1 2 3 4 5 6 7 8 9
+        for (int i = 0; i < 10000; i++) {
+            int choice = Toolkit.randomRange(0, 9);
+            hits[choice] = true;
+        }
+        for (int i = 0; i < hits.length; i++) {
+            if (!hits[i]) {
+                fail("This shouldn't fail, although it is statistically possible. If it shows up frequently, randomRange is broken");
+            }
+        }
+    }
+
+    @Test
     public void testAngleUnits() {
         for (int i = -360; i <= 360; i++) {
             float radian = Toolkit.toRadians(i);
@@ -104,10 +118,6 @@ public class ToolkitTest {
         Color expected = new Color(128, 128, 0);
         Color actual = Toolkit.colorLerp(color1, color2, amount);
         assertEquals(expected, actual);
-        // assertEquals(expected.getRed(), actual.getRed());
-        // assertEquals(expected.getGreen(), actual.getGreen());
-        // assertEquals(expected.getBlue(), actual.getBlue());
-        // assertEquals(expected.getAlpha(), actual.getAlpha());
     }
 
     @Test
