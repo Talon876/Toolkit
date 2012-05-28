@@ -21,7 +21,7 @@ Add Toolkit as a dependency:
         [...]
         <dependency>
     		<groupId>org.nolat</groupId>
-			<artifactId>Toolkit</artifactId>
+			<artifactId>toolkit</artifactId>
 			<version>1.0</version>
 		</dependency>
     </dependencies>
