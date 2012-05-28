@@ -147,8 +147,6 @@ public class Toolkit {
             return value2;
         } else {
             float result = value1 + (value2 - value1) * amount;
-            LOG.debug(String.format("Calculating %f between %f and %f based on %f + (%f - %f) * %f is %f", amount,
-                    value1, value2, value1, value2, value1, amount, result));
             return result;
         }
     }
@@ -169,10 +167,6 @@ public class Toolkit {
         int g = Math.round(lerp(color1.getGreen(), color2.getGreen(), amount));
         int b = Math.round(lerp(color1.getBlue(), color2.getBlue(), amount));
         int a = Math.round(lerp(color1.getAlpha(), color2.getAlpha(), amount));
-        LOG.debug(String.format("Incoming colors: %d,%d,%d,%d and %d,%d,%d,%d. Lerping %f", color1.getRed(),
-                color1.getGreen(), color1.getBlue(), color1.getAlpha(), color2.getRed(), color2.getGreen(),
-                color2.getBlue(), color2.getAlpha(), amount));
-        LOG.debug(String.format("Lerped color is %d,%d,%d,%d", r, g, b, a));
         return new Color(r, g, b, a);
     }
 
